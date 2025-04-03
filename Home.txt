@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DHL Ticketing - Home</title>
+  <style>
+    /* =========================================
+       DHL Ticketing App - Global Styles
+       Author: Rich
+       Last updated: April 2025
+       ========================================= */
+
+    /* Typography */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      color: #333;
+      background-color: #fdfdfd;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 600;
+      color: #c40000; /* DHL red */
+      margin-bottom: 20px;
+    }
+
+    /* Layout */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .buttons button {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #ffc107; /* DHL yellow */
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #ffca2c;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.4em;
+      }
+
+      .buttons button {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>DHL Ticketing</h1>
+  <div class="buttons">
+    <button onclick="goToForm('Leadership')">Leadership</button>
+    <button onclick="goToForm('OMS')">OMS</button>
+    <button onclick="goToForm('Planning')">Planning</button>
+    <button onclick="goToForm('Inventory')">Inventory</button>
+    <button onclick="goToForm('Transport')">Transport</button>
+    <button onclick="goToForm('Operations')">Operations</button>
+  </div>
+
+  <script>
+    function goToForm(dept) {
+      localStorage.setItem('department', dept);
+      window.location.href = 'form.html';
+    }
+  </script>
+</body>
+</html>

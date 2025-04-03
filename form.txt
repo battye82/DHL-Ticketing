@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DHL Ticketing - Form</title>
+  <style>
+    /* =========================================
+       DHL Ticketing App - Form Styles
+       Author: Rich
+       Last updated: April 2025
+       ========================================= */
+
+    /* Typography */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      color: #333;
+      background-color: #fdfdfd;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-weight: 600;
+      color: #c40000;
+      margin-bottom: 20px;
+    }
+
+    /* Form layout */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    form label {
+      align-self: flex-start;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    form button {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    form button:hover {
+      background-color: #ffca2c;
+    }
+
+    @media screen and (max-width: 480px) {
+      h2 {
+        font-size: 1.4em;
+      }
+
+      form button {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      form select,
+      form textarea {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2 id="deptTitle">Submit Ticket</h2>
+  <form id="ticketForm">
+    <label>Issue Type:</label>
+    <select id="issueType" required>
+      <option value="">Select...</option>
+      <option value="Bug">Bug</option>
+      <option value="Request">Request</option>
+      <option value="Feedback">Feedback</option>
+    </select>
+
+    <label>Describe the issue:</label>
+    <textarea id="description" required></textarea>
+
+    <button type="submit">Send</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dept = localStorage.getItem("department");
+      document.getElementById("deptTitle").innerText = dept + " Ticket";
+    });
+
+    emailjs.init("YOUR_EMAILJS_USER_ID");
+
+    document.getElementById("ticketForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const department = localStorage.getItem("department");
+      const issueType = document.getElementById("issueType").value;
+      const description = document.getElementById("description").value;
+
+      emailjs.send("your_service_id", "your_template_id", {
+        department: department,
+        issue_type: issueType,
+        description: description
+      })
+      .then(() => {
+        window.location.href = "thankyou.html";
+      }, (error) => {
+        alert("Failed to send: " + JSON.stringify(error));
+      });
+    });
+  </script>
+</body>
+</html>
