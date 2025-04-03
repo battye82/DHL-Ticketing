@@ -119,7 +119,7 @@
       document.getElementById("deptTitle").innerText = dept + " Ticket";
     });
 
-    emailjs.init("YOUR_EMAILJS_USER_ID");
+    emailjs.init("YM1ek1U-Qb7ji1Uz1");
 
     document.getElementById("ticketForm").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -127,7 +127,7 @@
       const issueType = document.getElementById("issueType").value;
       const description = document.getElementById("description").value;
 
-      emailjs.send("your_service_id", "your_template_id", {
+      emailjs.send("service_54cgqid", "template_81oum93", {
         department: department,
         issue_type: issueType,
         description: description
